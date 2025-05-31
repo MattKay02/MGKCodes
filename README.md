@@ -1,2 +1,2 @@
 # MGKCodes
-My first personal website 
+My personal Website and brand.
