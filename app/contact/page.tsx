@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
@@ -74,6 +74,11 @@ export default function ContactPage() {
   );
   const { theme, mounted } = useTheme();
 
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -86,23 +91,28 @@ export default function ContactPage() {
     setSubmitStatus(null);
 
     try {
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
-        {
-          from_name: data.name,
-          from_email: data.email,
-          phone: data.phone || "Not provided",
-          service: data.service,
-          budget: data.budget || "Not specified",
-          message: data.message,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY"
-      );
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+      if (!serviceId || !templateId) {
+        throw new Error("EmailJS configuration missing");
+      }
+
+      await emailjs.send(serviceId, templateId, {
+        to_name: "MGKCodes",
+        from_name: data.name,
+        from_email: data.email,
+        reply_to: data.email,
+        phone: data.phone || "Not provided",
+        service: data.service,
+        budget: data.budget || "Not specified",
+        message: data.message,
+      });
 
       setSubmitStatus("success");
       reset();
-    } catch {
+    } catch (error) {
+      console.error("EmailJS error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -160,7 +170,7 @@ export default function ContactPage() {
 
               {submitStatus === "success" && (
                 <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-600 dark:text-green-400">
-                  Thanks for reaching out! We'll get back to you within 24 hours.
+                  Thanks for reaching out! We'll get back to you as soon as possible.
                 </div>
               )}
 
