@@ -125,7 +125,7 @@ export default function ContactPage() {
               <Image
                 src={
                   theme === "dark"
-                    ? "/images/logo/svg/logo-white.svg"
+                    ? "/images/logo/svg/logo-white-elements.svg"
                     : "/images/logo/svg/logo-no-background.svg"
                 }
                 alt="MGKCodes"

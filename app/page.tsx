@@ -86,7 +86,7 @@ export default function Home() {
                 <Image
                   src={
                     theme === "dark"
-                      ? "/images/logo/svg/logo-white.svg"
+                      ? "/images/logo/svg/logo-white-elements.svg"
                       : "/images/logo/svg/logo-no-background.svg"
                   }
                   alt="MGKCodes"
@@ -245,7 +245,7 @@ export default function Home() {
                 src={
                   theme === "dark"
                     ? "/images/logo/svg/logo-no-background.svg"
-                    : "/images/logo/svg/logo-white.svg"
+                    : "/images/logo/svg/logo-white-elements.svg"
                 }
                 alt="MGKCodes"
                 width={280}

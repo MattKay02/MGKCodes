@@ -166,7 +166,7 @@ export default function ServicesPage() {
               <Image
                 src={
                   theme === "dark"
-                    ? "/images/logo/svg/logo-white.svg"
+                    ? "/images/logo/svg/logo-white-elements.svg"
                     : "/images/logo/svg/logo-no-background.svg"
                 }
                 alt="MGKCodes"
@@ -332,7 +332,7 @@ export default function ServicesPage() {
                 src={
                   theme === "dark"
                     ? "/images/logo/svg/logo-no-background.svg"
-                    : "/images/logo/svg/logo-white.svg"
+                    : "/images/logo/svg/logo-white-elements.svg"
                 }
                 alt="MGKCodes"
                 width={280}
