@@ -19,6 +19,7 @@
     "react-hook-form": "^7.71.1"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.7",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
