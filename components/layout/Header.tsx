@@ -48,7 +48,7 @@ export function Header() {
               <Image
                 src={
                   theme === "dark"
-                    ? "/images/logo/svg/logo-white-elements.svg"
+                    ? "/images/logo/svg/logo-no-background.svg"
                     : "/images/logo/svg/logo-white-elements.svg"
                 }
                 alt="MGKCodes"
