@@ -3,12 +3,23 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Folder, Code, Smartphone, Bot, Search, Share2, Settings } from "lucide-react";
+import { Folder, Code, Smartphone, Bot, Search, Share2, Settings, ExternalLink } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
+
+interface Project {
+  id: number;
+  category: string;
+  categoryLabel: string;
+  title: string;
+  description: string;
+  image?: string;
+  link?: string;
+  isPlaceholder?: boolean;
+}
 
 const categories = [
   { id: "all", label: "All Projects", icon: Folder },
@@ -20,13 +31,21 @@ const categories = [
   { id: "custom", label: "Custom Solutions", icon: Settings },
 ];
 
-const placeholderProjects = [
-  { id: 1, category: "web", categoryLabel: "Web Development" },
-  { id: 2, category: "web", categoryLabel: "Web Development" },
-  { id: 3, category: "mobile", categoryLabel: "Mobile App" },
-  { id: 4, category: "ai", categoryLabel: "AI Integration" },
-  { id: 5, category: "seo", categoryLabel: "SEO Project" },
-  { id: 6, category: "custom", categoryLabel: "Custom Solution" },
+const projects: Project[] = [
+  {
+    id: 1,
+    category: "web",
+    categoryLabel: "Web Development",
+    title: "Matthew Simpson Architecture",
+    description: "Professional portfolio website for architect Matthew Simpson showcasing architectural projects and portfolio work.",
+    image: "/images/Portfolio_images/MSA-screenshot.png",
+    link: "https://matthewsimpsonarchitecture.vercel.app",
+  },
+  { id: 2, category: "web", categoryLabel: "Web Development", title: "Project Coming Soon", description: "We're currently working on exciting projects. Check back soon!", isPlaceholder: true },
+  { id: 3, category: "mobile", categoryLabel: "Mobile App", title: "Project Coming Soon", description: "We're currently working on exciting projects. Check back soon!", isPlaceholder: true },
+  { id: 4, category: "ai", categoryLabel: "AI Integration", title: "Project Coming Soon", description: "We're currently working on exciting projects. Check back soon!", isPlaceholder: true },
+  { id: 5, category: "seo", categoryLabel: "SEO Project", title: "Project Coming Soon", description: "We're currently working on exciting projects. Check back soon!", isPlaceholder: true },
+  { id: 6, category: "custom", categoryLabel: "Custom Solution", title: "Project Coming Soon", description: "We're currently working on exciting projects. Check back soon!", isPlaceholder: true },
 ];
 
 export default function PortfolioPage() {
@@ -35,8 +54,8 @@ export default function PortfolioPage() {
 
   const filteredProjects =
     activeFilter === "all"
-      ? placeholderProjects
-      : placeholderProjects.filter((p) => p.category === activeFilter);
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   return (
     <div className="pt-20">
@@ -101,10 +120,20 @@ export default function PortfolioPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <Card className="h-full">
-                {/* Placeholder Image */}
-                <div className="aspect-video bg-theme-secondary rounded-lg mb-4 flex items-center justify-center border border-theme">
-                  <Folder className="w-12 h-12 text-theme-muted opacity-30" />
+              <Card className="h-full overflow-hidden flex flex-col">
+                {/* Image or Placeholder */}
+                <div className="aspect-video bg-theme-secondary rounded-lg mb-4 flex items-center justify-center border border-theme overflow-hidden">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Folder className="w-12 h-12 text-theme-muted opacity-30" />
+                  )}
                 </div>
 
                 {/* Category Badge */}
@@ -114,11 +143,24 @@ export default function PortfolioPage() {
 
                 {/* Content */}
                 <h3 className="text-lg font-semibold text-theme mb-2">
-                  Project Coming Soon
+                  {project.title}
                 </h3>
-                <p className="text-theme-muted text-sm">
-                  We're currently working on exciting projects. Check back soon!
+                <p className="text-theme-muted text-sm flex-grow">
+                  {project.description}
                 </p>
+
+                {/* Link Button */}
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all mt-4 font-medium text-sm"
+                  >
+                    View Project
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
               </Card>
             </motion.div>
           ))}
