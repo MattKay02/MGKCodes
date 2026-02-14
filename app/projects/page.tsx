@@ -49,6 +49,17 @@ const projects: Project[] = [
     link: "https://matthewsimpsonarchitecture.vercel.app",
     slug: "matthew-simpson-architecture",
   },
+  {
+    id: 3,
+    category: "web",
+    categoryLabel: "Web",
+    title: "Red Cross Reigate",
+    description:
+      "Landing page for a traditional local pub in Reigate, Surrey. Featuring drinks menus, events, and essential pub information.",
+    image: "/images/Portfolio_images/RedCrossReigate-screenshot.png",
+    link: "https://red-cross-reigate.vercel.app",
+    slug: "red-cross-reigate",
+  },
 ];
 
 export default function ProjectsPage() {

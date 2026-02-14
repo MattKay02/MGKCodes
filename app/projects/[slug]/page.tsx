@@ -54,6 +54,26 @@ const projects: Record<string, Project> = {
     images: ["/images/Portfolio_images/MSA-screenshot.png"],
     liveUrl: "https://matthewsimpsonarchitecture.vercel.app",
   },
+  "red-cross-reigate": {
+    title: "Red Cross Reigate",
+    category: "Web",
+    heroImage: "/images/Portfolio_images/RedCrossReigate-screenshot.png",
+    challenge:
+      "A well-loved local pub in Reigate needed a modern online presence to attract customers and share key information like drinks menus, upcoming events, and opening hours.",
+    solution:
+      "A clean, inviting landing page that captures the pub's character with a strong hero image, easy navigation, and quick access to drinks, events, and contact details. Built mobile-first so customers can find what they need on the go.",
+    features: [
+      "Full-screen hero with pub imagery",
+      "Drinks menu section",
+      "What's On events listing",
+      "About section with pub story",
+      "Contact information and location",
+      "Mobile-optimized responsive design",
+    ],
+    results: ["Live at red-cross-reigate.vercel.app"],
+    images: ["/images/Portfolio_images/RedCrossReigate-screenshot.png"],
+    liveUrl: "https://red-cross-reigate.vercel.app",
+  },
 };
 
 interface PageProps {
