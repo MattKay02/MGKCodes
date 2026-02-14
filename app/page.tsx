@@ -1,74 +1,60 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
   Code,
-  Search,
   Cpu,
   ArrowRight,
-  MessageSquare,
-  Wrench,
-  Rocket,
+  Smartphone,
+  Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
-import { useTheme } from "@/components/providers/ThemeProvider";
 
-const services = [
+const featuredProjects = [
   {
-    icon: Code,
-    title: "Web Development",
-    description: "Professional websites built to convert visitors into customers.",
-    price: "Starting at £99",
+    title: "Liftio",
+    type: "Mobile App",
+    description:
+      "Fitness tracking application for iOS and Android with workout logging, progress analytics, and social features.",
+    status: "In Development",
+    link: null,
   },
   {
-    icon: Search,
-    title: "SEO Optimization",
-    description: "Get found online with search engine optimization that works.",
-    price: "£40/month package available",
+    title: "Matthew Simpson Architecture",
+    type: "Web",
+    description:
+      "Portfolio website for an architecture firm showcasing projects and practice.",
+    status: "Live",
+    link: "https://matthewsimpsonarchitecture.vercel.app",
+  },
+];
+
+const capabilities = [
+  {
+    icon: Smartphone,
+    title: "Mobile Apps",
+    description: "Custom apps for iOS and Android, built to scale.",
+  },
+  {
+    icon: Code,
+    title: "Web Applications",
+    description: "Fast, modern web apps designed to perform.",
   },
   {
     icon: Cpu,
-    title: "Software Solutions",
-    description:
-      "Custom software, AI integration, and mobile apps for your business.",
-    price: "Get a Quote",
-  },
-];
-
-const steps = [
-  {
-    icon: MessageSquare,
-    step: "1",
-    title: "Contact Us",
-    description:
-      "Tell us what you need and we'll discuss the best solution for your business.",
+    title: "SaaS Products",
+    description: "Custom software products built from the ground up.",
   },
   {
-    icon: Wrench,
-    step: "2",
-    title: "We Build",
-    description: "Fast, professional development with regular updates on progress.",
+    icon: Globe,
+    title: "AI Integration",
+    description: "Smart automation and AI-powered features for your product.",
   },
-  {
-    icon: Rocket,
-    step: "3",
-    title: "You Launch",
-    description: "Go live with hosting and SEO support to help you succeed.",
-  },
-];
-
-const pricing = [
-  { name: "Landing Page", price: "£99" },
-  { name: "Custom Website", price: "Contact for Quote" },
-  { name: "Hosting + SEO", price: "£40/month" },
 ];
 
 export default function Home() {
-  const { theme, mounted } = useTheme();
-
   return (
     <div className="pt-20 md:pt-24">
       {/* Hero Section */}
@@ -80,191 +66,119 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            {/* Hero Logo */}
-            <div className="mb-10">
-              {mounted ? (
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/images/logo/svg/logo-white-elements.svg"
-                      : "/images/logo/svg/logo-no-background.svg"
-                  }
-                  alt="MGKCodes"
-                  width={400}
-                  height={120}
-                  className="h-28 md:h-36 lg:h-40 w-auto mx-auto"
-                  priority
-                />
-              ) : (
-                <div className="h-28 md:h-36 lg:h-40 w-[400px] mx-auto bg-gray-100 dark:bg-zinc-800 rounded animate-pulse" />
-              )}
-            </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-theme leading-tight mb-6">
-              Professional Websites Built for{" "}
-              <span className="text-primary">Small Businesses</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-theme leading-tight mb-4">
+              MGKCodes
             </h1>
-            <p className="text-lg md:text-xl text-theme-muted mb-8 max-w-2xl mx-auto">
-              Custom web development, SEO optimization, and software solutions to
-              grow your business online
+            <p className="text-lg md:text-xl text-theme-muted mb-3">
+              Development studio building web and mobile applications.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button href="/contact" variant="primary">
-                Get Your Website
-              </Button>
-              <Button href="/portfolio" variant="secondary">
+            <p className="text-base md:text-lg text-theme mb-8 max-w-2xl mx-auto">
+              Custom SaaS development · Product design · Full-stack engineering
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button href="/projects" variant="secondary">
                 View Our Work
               </Button>
+              <Button href="/contact" variant="ghost">
+                Get in Touch <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
             </div>
-            <p className="text-sm text-theme-muted">
-              From £99 | Worldwide Service | Ready to Launch
-            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Current Work */}
       <Section className="bg-theme">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-semibold text-theme mb-4">
-            What We Do
+        <div className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold text-theme mb-2">
+            Current Work
           </h2>
-          <p className="text-theme-muted max-w-2xl mx-auto">
-            From simple landing pages to complex software solutions, we help
-            businesses succeed online.
-          </p>
+          <p className="text-theme-muted">What we&apos;re building right now.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {featuredProjects.map((project, index) => (
             <motion.div
-              key={service.title}
+              key={project.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="h-full text-center">
-                <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="w-7 h-7 text-primary" />
+              <Card className="h-full">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded">
+                    {project.type}
+                  </span>
+                  <span className="text-xs text-theme-muted">
+                    {project.status}
+                  </span>
                 </div>
                 <h3 className="text-xl font-semibold text-theme mb-2">
-                  {service.title}
+                  {project.title}
                 </h3>
-                <p className="text-theme-muted mb-4">{service.description}</p>
-                <p className="text-primary font-semibold">{service.price}</p>
+                <p className="text-theme-muted mb-4">{project.description}</p>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary mt-4 font-medium text-sm hover:gap-3 transition-all"
+                  >
+                    View Project <ArrowRight className="w-4 h-4" />
+                  </a>
+                )}
               </Card>
             </motion.div>
           ))}
         </div>
-        <div className="text-center mt-8">
-          <Button href="/services" variant="ghost">
-            View All Services <ArrowRight className="ml-2 w-4 h-4" />
+        <div className="mt-8">
+          <Button href="/projects" variant="ghost">
+            All Projects <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </div>
       </Section>
 
-      {/* How It Works */}
+      {/* Capabilities */}
       <Section className="bg-theme-secondary">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-semibold text-theme mb-4">
-            How It Works
+        <div className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold text-theme mb-2">
+            Capabilities
           </h2>
-          <p className="text-theme-muted max-w-2xl mx-auto">
-            Getting your website built is simple. Here's how we work together.
-          </p>
+          <p className="text-theme-muted">What we build.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {steps.map((step, index) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {capabilities.map((cap, index) => (
             <motion.div
-              key={step.title}
+              key={cap.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center"
             >
-              <div className="relative mb-6">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto text-2xl font-semibold">
-                  {step.step}
-                </div>
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 bg-primary/20" />
-                )}
-              </div>
-              <h3 className="text-xl font-semibold text-theme mb-2">
-                {step.title}
-              </h3>
-              <p className="text-theme-muted">{step.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Pricing Snapshot */}
-      <Section className="bg-theme">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-semibold text-theme mb-4">
-            Transparent Pricing
-          </h2>
-          <p className="text-theme-muted max-w-2xl mx-auto">
-            No hidden fees. Know exactly what you're paying for.
-          </p>
-        </div>
-        <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-          {pricing.map((item, index) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-            >
-              <Card className="text-center">
-                <p className="text-theme-muted mb-2">{item.name}</p>
-                <p className="text-2xl font-semibold text-theme">
-                  {item.price}
-                </p>
+              <Card className="h-full">
+                <cap.icon className="w-6 h-6 text-primary mb-3" />
+                <h3 className="text-lg font-semibold text-theme mb-1">
+                  {cap.title}
+                </h3>
+                <p className="text-theme-muted text-sm">{cap.description}</p>
               </Card>
             </motion.div>
           ))}
-        </div>
-        <div className="text-center mt-8">
-          <Button href="/services" variant="secondary">
-            See Full Pricing
-          </Button>
         </div>
       </Section>
 
       {/* CTA Section */}
       <Section className="bg-black dark:bg-white text-white dark:text-black transition-colors duration-300">
         <div className="text-center">
-          {/* CTA Logo */}
-          <div className="mb-8">
-            {mounted ? (
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/images/logo/svg/logo-no-background.svg"
-                    : "/images/logo/svg/logo-white-elements.svg"
-                }
-                alt="MGKCodes"
-                width={280}
-                height={84}
-                className="h-20 md:h-24 w-auto mx-auto"
-              />
-            ) : (
-              <div className="h-20 md:h-24 w-[280px] mx-auto bg-white/10 dark:bg-black/10 rounded animate-pulse" />
-            )}
-          </div>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Ready to Get Started?
+            Let&apos;s Build Something
           </h2>
           <p className="text-gray-400 dark:text-gray-600 max-w-2xl mx-auto mb-8">
-            Let's discuss your project and find the perfect solution for your
-            business.
+            We work with founders and companies to design and build web and
+            mobile applications.
           </p>
           <Button href="/contact" variant="primary">
-            Contact Us Today
+            Get in Touch
           </Button>
         </div>
       </Section>

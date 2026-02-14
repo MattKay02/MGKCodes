@@ -1,252 +1,161 @@
 "use client";
 
-import Image from "next/image";
 import {
   Code,
-  Search,
   Bot,
   Smartphone,
-  Share2,
   Settings,
-  Check,
   ArrowRight,
 } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { useTheme } from "@/components/providers/ThemeProvider";
 
-const webDevFeatures = [
-  "Landing pages",
-  "Business websites",
-  "E-commerce stores",
-  "Portfolio sites",
-  "Web applications",
+const capabilities = [
+  "Web applications that load fast and scale with your business",
+  "Mobile apps for iOS and Android from a single codebase",
+  "Backend systems and APIs that power your product",
+  "Database design built for performance and growth",
+  "Product design and user experience",
+  "App store submission and deployment",
+  "AI-powered features and automation",
 ];
 
-const webDevProcess = [
+const process = [
   {
     step: "1",
-    title: "Consultation",
-    description: "We discuss your needs, goals, and vision for your website.",
+    title: "Discovery",
+    description: "We discuss your product, goals, and technical requirements.",
   },
   {
     step: "2",
-    title: "Design & Development",
-    description: "We build your site using modern technologies and best practices.",
+    title: "Architecture & Build",
+    description:
+      "We design the system and build iteratively with regular progress updates.",
   },
   {
     step: "3",
-    title: "Testing",
-    description: "Thorough testing across devices to ensure everything works perfectly.",
+    title: "QA & Review",
+    description:
+      "Thorough testing across devices and environments before launch.",
   },
   {
     step: "4",
-    title: "Launch & Support",
-    description: "We launch your site and provide ongoing support as needed.",
-  },
-];
-
-const webDevPricing = [
-  {
-    name: "Landing Page",
-    price: "£99",
-    features: [
-      "Single page design",
-      "Mobile responsive",
-      "Contact form",
-      "SEO basics",
-      "Fast delivery",
-    ],
-  },
-  {
-    name: "Multi-Page Website",
-    price: "Custom Quote",
-    features: [
-      "Multiple pages",
-      "Custom design",
-      "Full functionality",
-      "CMS integration",
-      "Ongoing support available",
-    ],
-  },
-  {
-    name: "Hosting + SEO",
-    price: "£40/month",
-    features: [
-      "Fast, reliable hosting",
-      "SSL certificate",
-      "Monthly SEO optimization",
-      "Performance monitoring",
-      "Regular backups",
-      "Security updates",
-    ],
-  },
-];
-
-const otherServices = [
-  {
-    icon: Search,
-    title: "SEO Optimization",
+    title: "Deployment & Maintenance",
     description:
-      "Get found online with comprehensive search engine optimization.",
-    features: [
-      "Keyword research",
-      "On-page SEO",
-      "Technical SEO",
-      "Local SEO",
-      "Performance optimization",
-    ],
-    pricing: "Included in £40/month package or standalone custom quote",
+      "We deploy to production and provide ongoing support as needed.",
   },
+];
+
+
+const additionalCapabilities = [
   {
     icon: Bot,
     title: "AI Integration",
     description:
-      "Leverage artificial intelligence to automate and enhance your business.",
+      "Smart features powered by AI — chatbots, content tools, and workflow automation.",
     features: [
-      "Custom chatbots",
-      "Content generation",
-      "Process automation",
-      "Data analysis",
-      "AI-powered tools",
+      "Chatbots and virtual assistants",
+      "Content generation tools",
+      "Workflow automation",
+      "Data processing and insights",
     ],
-    pricing: "Custom quote based on requirements",
   },
   {
     icon: Smartphone,
     title: "Mobile App Development",
     description:
-      "Native and cross-platform mobile applications for iOS and Android.",
+      "Native-quality apps for iOS and Android, built from a single codebase.",
     features: [
-      "iOS applications",
-      "Android applications",
-      "Cross-platform (React Native)",
-      "Progressive Web Apps",
-      "App store deployment",
+      "Cross-platform (one app, both stores)",
+      "App Store submission",
+      "Google Play submission",
+      "Works offline",
     ],
-    pricing: "Custom quote based on requirements",
-  },
-  {
-    icon: Share2,
-    title: "Social Media Solutions",
-    description: "Tools and automation to manage your social media presence.",
-    features: [
-      "Management tools",
-      "Automation systems",
-      "Analytics dashboards",
-    ],
-    pricing: "Custom quote based on requirements",
   },
   {
     icon: Settings,
-    title: "Custom Software Solutions",
-    description: "Bespoke software built to solve your specific business challenges.",
+    title: "Custom Software",
+    description:
+      "Bespoke applications for specific product or business needs.",
     features: [
-      "Business process automation",
-      "Custom web applications",
-      "API development",
-      "System integrations",
+      "SaaS products",
+      "Internal business tools",
+      "Third-party integrations",
+      "Custom dashboards and portals",
     ],
-    pricing: "Custom quote based on requirements",
   },
 ];
 
 export default function ServicesPage() {
-  const { theme, mounted } = useTheme();
-
   return (
     <div className="pt-20">
       {/* Hero */}
       <Section className="bg-theme-secondary">
-        <div className="text-center max-w-3xl mx-auto">
-          {/* Hero Logo */}
-          <div className="mb-8">
-            {mounted ? (
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/images/logo/svg/logo-white-elements.svg"
-                    : "/images/logo/svg/logo-no-background.svg"
-                }
-                alt="MGKCodes"
-                width={280}
-                height={84}
-                className="h-20 md:h-24 w-auto mx-auto"
-                priority
-              />
-            ) : (
-              <div className="h-20 md:h-24 w-[280px] mx-auto bg-theme rounded animate-pulse" />
-            )}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-semibold text-theme mb-6">
-            Our Services
+        <div className="max-w-3xl">
+          <h1 className="text-4xl md:text-5xl font-semibold text-theme mb-4">
+            Capabilities
           </h1>
           <p className="text-lg text-theme-muted">
-            From simple websites to complex software solutions, we provide
-            everything you need to succeed online.
+            What we build and how we work.
           </p>
         </div>
       </Section>
 
-      {/* Web Development - Featured Service */}
-      <Section className="bg-theme" id="web-development">
+      {/* Web & App Development - Primary */}
+      <Section className="bg-theme" id="development">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                 <Code className="w-6 h-6 text-primary" />
               </div>
-              <span className="text-primary font-semibold text-sm uppercase tracking-wide">
-                Featured Service
-              </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-semibold text-theme mb-4">
-              Web Development
+              Web & App Development
             </h2>
             <p className="text-theme-muted mb-6">
-              Professional websites built with modern technologies. We create
-              fast, responsive, and SEO-optimized sites that help your business
-              grow.
+              Full-stack development for web and mobile applications. We build
+              products from concept through deployment and beyond.
             </p>
 
             <h3 className="text-xl font-semibold text-theme mb-3">
               What We Build
             </h3>
             <ul className="space-y-2 mb-8">
-              {webDevFeatures.map((feature) => (
-                <li key={feature} className="flex items-center gap-2 text-theme">
-                  <Check className="w-5 h-5 text-primary" />
-                  <span>{feature}</span>
+              {capabilities.map((cap) => (
+                <li key={cap} className="flex items-start gap-2 text-theme">
+                  <span className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
+                  <span>{cap}</span>
                 </li>
               ))}
             </ul>
 
             <h3 className="text-xl font-semibold text-theme mb-3">
-              Our Tech Stack
+              Our Approach
             </h3>
-            <p className="text-theme-muted mb-2">
-              We use modern, proven technologies:
-            </p>
-            <p className="text-theme">
-              React, Next.js, Tailwind CSS, TypeScript — all mobile-first and
-              SEO-optimized.
+            <p className="text-theme-muted">
+              We use modern, industry-standard technologies chosen for
+              reliability, performance, and long-term maintainability. Every
+              project is built to scale with your business.
             </p>
           </div>
 
           <div>
             <h3 className="text-xl font-semibold text-theme mb-6">
-              Our Process
+              How We Work
             </h3>
             <div className="space-y-4">
-              {webDevProcess.map((step) => (
+              {process.map((step) => (
                 <div key={step.step} className="flex gap-4">
                   <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-semibold shrink-0">
                     {step.step}
                   </div>
                   <div>
                     <h4 className="font-semibold text-theme">{step.title}</h4>
-                    <p className="text-theme-muted text-sm">{step.description}</p>
+                    <p className="text-theme-muted text-sm">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -254,46 +163,33 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        {/* Web Dev Pricing */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-semibold text-theme mb-8 text-center">
-            Web Development Pricing
+        {/* Project Scope */}
+        <div className="mt-12 p-6 bg-theme-secondary rounded-lg border border-theme">
+          <h3 className="text-lg font-semibold text-theme mb-2">
+            Project Scope
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {webDevPricing.map((plan) => (
-              <Card key={plan.name} className="text-center">
-                <h4 className="text-lg font-semibold text-theme mb-2">
-                  {plan.name}
-                </h4>
-                <p className="text-3xl font-semibold text-primary mb-4">
-                  {plan.price}
-                </p>
-                <ul className="space-y-2 text-left">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm">
-                      <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                      <span className="text-theme">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            ))}
-          </div>
-          <p className="text-center text-theme-muted mt-4 text-sm">
-            Need website updates? Contact us for a separate quote.
+          <p className="text-theme-muted">
+            We take on projects ranging from focused feature builds to full
+            product development. Every engagement starts with a discovery
+            conversation. Reach out to discuss scope and timeline.
           </p>
+          <div className="mt-4">
+            <Button href="/contact" variant="secondary">
+              Start a Conversation <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </Section>
 
-      {/* Other Services */}
+      {/* Additional Capabilities */}
       <Section className="bg-theme-secondary">
-        <h2 className="text-3xl font-semibold text-theme mb-8 text-center">
-          More Services
+        <h2 className="text-3xl font-semibold text-theme mb-8">
+          Additional Capabilities
         </h2>
         <div className="space-y-8">
-          {otherServices.map((service) => (
+          {additionalCapabilities.map((service) => (
             <Card key={service.title} hover={false} className="p-8">
-              <div className="grid md:grid-cols-[auto,1fr,auto] gap-6 items-start">
+              <div className="grid md:grid-cols-[auto,1fr] gap-6 items-start">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                   <service.icon className="w-6 h-6 text-primary" />
                 </div>
@@ -313,9 +209,6 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-theme-muted">{service.pricing}</p>
-                </div>
               </div>
             </Card>
           ))}
@@ -325,29 +218,11 @@ export default function ServicesPage() {
       {/* CTA */}
       <Section className="bg-black dark:bg-white text-white dark:text-black transition-colors duration-300">
         <div className="text-center">
-          {/* CTA Logo */}
-          <div className="mb-8">
-            {mounted ? (
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/images/logo/svg/logo-no-background.svg"
-                    : "/images/logo/svg/logo-white-elements.svg"
-                }
-                alt="MGKCodes"
-                width={280}
-                height={84}
-                className="h-16 md:h-20 w-auto mx-auto"
-              />
-            ) : (
-              <div className="h-16 md:h-20 w-[280px] mx-auto bg-white/10 dark:bg-black/10 rounded animate-pulse" />
-            )}
-          </div>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Ready to Start Your Project?
+            Ready to start a project?
           </h2>
           <p className="text-gray-400 dark:text-gray-600 max-w-2xl mx-auto mb-8">
-            Contact us today to discuss your requirements and get a free quote.
+            Tell us what you&apos;re building.
           </p>
           <Button href="/contact" variant="primary">
             Get in Touch <ArrowRight className="ml-2 w-4 h-4" />

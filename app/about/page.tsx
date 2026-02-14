@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import {
   Code,
-  Search,
   Bot,
   Smartphone,
   Settings,
@@ -16,31 +14,22 @@ import {
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { useTheme } from "@/components/providers/ThemeProvider";
 
 const expertise = [
   { icon: Code, label: "Web Development" },
-  { icon: Search, label: "SEO Optimization" },
-  { icon: Bot, label: "AI Integration" },
   { icon: Smartphone, label: "Mobile Apps" },
+  { icon: Bot, label: "AI Integration" },
   { icon: Settings, label: "Custom Software" },
-  { icon: Globe, label: "Worldwide Service" },
-];
-
-const techStack = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Tailwind CSS",
-  "Node.js",
-  "React Native",
+  { icon: Globe, label: "SaaS Products" },
+  { icon: Globe, label: "Worldwide" },
 ];
 
 const whyWorkWithUs = [
   {
     icon: Zap,
-    title: "Fast Delivery",
-    description: "We work efficiently to get your project live quickly.",
+    title: "Technical Depth",
+    description:
+      "Full-stack expertise across web, mobile, and backend systems.",
   },
   {
     icon: Users,
@@ -49,8 +38,9 @@ const whyWorkWithUs = [
   },
   {
     icon: MessageSquare,
-    title: "Ongoing Support",
-    description: "We're here to help even after your project launches.",
+    title: "Direct Communication",
+    description:
+      "You work directly with the engineers, not account managers.",
   },
   {
     icon: Shield,
@@ -60,37 +50,16 @@ const whyWorkWithUs = [
 ];
 
 export default function AboutPage() {
-  const { theme, mounted } = useTheme();
-
   return (
     <div className="pt-20">
       {/* Hero */}
       <Section className="bg-theme-secondary">
-        <div className="text-center max-w-3xl mx-auto">
-          {/* Hero Logo */}
-          <div className="mb-8">
-            {mounted ? (
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/images/logo/svg/logo-white-elements.svg"
-                    : "/images/logo/svg/logo-no-background.svg"
-                }
-                alt="MGKCodes"
-                width={280}
-                height={84}
-                className="h-20 md:h-24 w-auto mx-auto"
-                priority
-              />
-            ) : (
-              <div className="h-20 md:h-24 w-[280px] mx-auto bg-theme rounded animate-pulse" />
-            )}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-semibold text-theme mb-6">
+        <div className="max-w-3xl">
+          <h1 className="text-4xl md:text-5xl font-semibold text-theme mb-4">
             About MGKCodes
           </h1>
           <p className="text-lg text-theme-muted">
-            Building software solutions that help businesses grow.
+            Development studio. Working worldwide.
           </p>
         </div>
       </Section>
@@ -100,22 +69,18 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <div className="space-y-6">
             <p className="text-lg text-theme leading-relaxed">
-              MGKCodes is a software solutions company specializing in custom web
-              development and modern technology integration. We help small
-              businesses and growing companies establish their online presence and
-              leverage technology to achieve their goals.
+              MGKCodes is a development studio specializing in web and mobile
+              application development. We work with founders and businesses to
+              design, build, and ship software products.
             </p>
             <p className="text-lg text-theme leading-relaxed">
-              We've always had a passion for design and creating something real.
-              That passion drives every project we take on — from simple landing
-              pages to complex AI integrations. We believe great software should
-              be accessible, affordable, and built to last.
+              We build our own products alongside client work. Our current focus
+              is Liftio, a fitness application for iOS and Android. We care
+              about craftsmanship and building things that work.
             </p>
             <p className="text-lg text-theme leading-relaxed">
-              We work remotely with clients worldwide, bringing modern development
-              practices and clear communication to every project. Whether you need
-              a new website, mobile app, or custom software solution, we're here
-              to help you build it right.
+              Based in London, working with clients worldwide. We bring strong
+              technical execution and direct communication to every project.
             </p>
           </div>
         </div>
@@ -133,29 +98,6 @@ export default function AboutPage() {
               <p className="text-sm font-medium text-theme">{item.label}</p>
             </Card>
           ))}
-        </div>
-      </Section>
-
-      {/* Our Technology */}
-      <Section className="bg-theme">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-theme mb-4">
-            Our Technology
-          </h2>
-          <p className="text-theme-muted mb-8">
-            We use modern, proven technologies to build fast, reliable, and
-            maintainable software.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 bg-theme-secondary border border-theme rounded-full text-sm font-medium text-theme"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
         </div>
       </Section>
 
@@ -182,30 +124,12 @@ export default function AboutPage() {
       {/* CTA */}
       <Section className="bg-black dark:bg-white text-white dark:text-black transition-colors duration-300">
         <div className="text-center">
-          {/* CTA Logo */}
-          <div className="mb-8">
-            {mounted ? (
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/images/logo/svg/logo-no-background.svg"
-                    : "/images/logo/svg/logo-white-elements.svg"
-                }
-                alt="MGKCodes"
-                width={280}
-                height={84}
-                className="h-16 md:h-20 w-auto mx-auto"
-              />
-            ) : (
-              <div className="h-16 md:h-20 w-[280px] mx-auto bg-white/10 dark:bg-black/10 rounded animate-pulse" />
-            )}
-          </div>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Let's Build Something Together
+            Let&apos;s Build Something Together
           </h2>
           <p className="text-gray-400 dark:text-gray-600 max-w-2xl mx-auto mb-8">
-            Ready to discuss your project? We'd love to hear about what you're
-            building.
+            We work with founders and companies building software products.
+            Let&apos;s talk.
           </p>
           <Button href="/contact" variant="primary">
             Get in Touch

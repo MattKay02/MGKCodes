@@ -1,42 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
-import { Mail, Phone, Instagram, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Send, Loader2 } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { useTheme } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 
 interface ContactFormData {
   name: string;
   email: string;
-  phone?: string;
-  service: string;
   budget?: string;
   message: string;
 }
 
-const serviceOptions = [
-  { value: "", label: "Select a service..." },
-  { value: "web-development", label: "Web Development" },
-  { value: "seo", label: "SEO Optimization" },
-  { value: "ai", label: "AI Integration" },
-  { value: "mobile", label: "Mobile App" },
-  { value: "social", label: "Social Media Solutions" },
-  { value: "custom", label: "Custom Software" },
-  { value: "general", label: "Not Sure / General Inquiry" },
-];
-
 const budgetOptions = [
   { value: "", label: "Select budget range (optional)..." },
-  { value: "under-500", label: "Under £500" },
-  { value: "500-1000", label: "£500 - £1,000" },
-  { value: "1000-5000", label: "£1,000 - £5,000" },
-  { value: "5000-plus", label: "£5,000+" },
+  { value: "under-10k", label: "Under $10,000" },
+  { value: "10k-25k", label: "$10,000 - $25,000" },
+  { value: "25k-50k", label: "$25,000 - $50,000" },
+  { value: "50k-plus", label: "$50,000+" },
   { value: "not-sure", label: "Not sure yet" },
 ];
 
@@ -44,26 +29,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "mgkcodes@gmail.com",
-    href: "mailto:mgkcodes@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "(+44) 7454745917",
-    href: "tel:+447454745917",
-  },
-  {
-    icon: Instagram,
-    label: "Instagram",
-    value: "@mgkcodes_",
-    href: "https://instagram.com/mgkcodes_",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Worldwide Remote Service",
-    href: null,
+    value: "hello@mgkcodes.com",
+    href: "mailto:hello@mgkcodes.com",
   },
 ];
 
@@ -72,9 +39,7 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
-  const { theme, mounted } = useTheme();
 
-  // Initialize EmailJS
   useEffect(() => {
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
   }, []);
@@ -103,8 +68,6 @@ export default function ContactPage() {
         from_name: data.name,
         from_email: data.email,
         reply_to: data.email,
-        phone: data.phone || "Not provided",
-        service: data.service,
         budget: data.budget || "Not specified",
         message: data.message,
       });
@@ -128,31 +91,12 @@ export default function ContactPage() {
     <div className="pt-20">
       {/* Hero */}
       <Section className="bg-theme-secondary">
-        <div className="text-center max-w-3xl mx-auto">
-          {/* Hero Logo */}
-          <div className="mb-8">
-            {mounted ? (
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/images/logo/svg/logo-white-elements.svg"
-                    : "/images/logo/svg/logo-no-background.svg"
-                }
-                alt="MGKCodes"
-                width={280}
-                height={84}
-                className="h-20 md:h-24 w-auto mx-auto"
-                priority
-              />
-            ) : (
-              <div className="h-20 md:h-24 w-[280px] mx-auto bg-theme rounded animate-pulse" />
-            )}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-semibold text-theme mb-6">
+        <div className="max-w-3xl">
+          <h1 className="text-4xl md:text-5xl font-semibold text-theme mb-4">
             Contact Us
           </h1>
           <p className="text-lg text-theme-muted">
-            Ready to start your project? Get in touch and we'll get back to you
+            Have a project in mind? Send us a message and we&apos;ll respond
             within 24 hours.
           </p>
         </div>
@@ -170,13 +114,15 @@ export default function ContactPage() {
 
               {submitStatus === "success" && (
                 <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-600 dark:text-green-400">
-                  Thanks for reaching out! We'll get back to you as soon as possible.
+                  Thanks for reaching out! We&apos;ll get back to you within 24
+                  hours.
                 </div>
               )}
 
               {submitStatus === "error" && (
                 <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-600 dark:text-red-400">
-                  Something went wrong. Please try again or contact us directly.
+                  Something went wrong. Please try again or email us directly at
+                  hello@mgkcodes.com.
                 </div>
               )}
 
@@ -190,7 +136,10 @@ export default function ContactPage() {
                     <input
                       id="name"
                       type="text"
-                      className={cn(inputClasses, errors.name && "border-red-500")}
+                      className={cn(
+                        inputClasses,
+                        errors.name && "border-red-500"
+                      )}
                       placeholder="Your name"
                       {...register("name", { required: "Name is required" })}
                     />
@@ -207,7 +156,10 @@ export default function ContactPage() {
                     <input
                       id="email"
                       type="email"
-                      className={cn(inputClasses, errors.email && "border-red-500")}
+                      className={cn(
+                        inputClasses,
+                        errors.email && "border-red-500"
+                      )}
                       placeholder="your@email.com"
                       {...register("email", {
                         required: "Email is required",
@@ -219,45 +171,6 @@ export default function ContactPage() {
                     />
                     {errors.email && (
                       <p className={errorClasses}>{errors.email.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Phone */}
-                  <div>
-                    <label htmlFor="phone" className={labelClasses}>
-                      Phone
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      className={inputClasses}
-                      placeholder="Your phone number (optional)"
-                      {...register("phone")}
-                    />
-                  </div>
-
-                  {/* Service */}
-                  <div>
-                    <label htmlFor="service" className={labelClasses}>
-                      Service Interested In <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      id="service"
-                      className={cn(inputClasses, errors.service && "border-red-500")}
-                      {...register("service", {
-                        required: "Please select a service",
-                      })}
-                    >
-                      {serviceOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.service && (
-                      <p className={errorClasses}>{errors.service.message}</p>
                     )}
                   </div>
                 </div>
@@ -288,7 +201,10 @@ export default function ContactPage() {
                   <textarea
                     id="message"
                     rows={5}
-                    className={cn(inputClasses, errors.message && "border-red-500")}
+                    className={cn(
+                      inputClasses,
+                      errors.message && "border-red-500"
+                    )}
                     placeholder="Tell us about your project..."
                     {...register("message", {
                       required: "Please describe your project",
@@ -338,14 +254,6 @@ export default function ContactPage() {
                       {item.href ? (
                         <a
                           href={item.href}
-                          target={
-                            item.href.startsWith("http") ? "_blank" : undefined
-                          }
-                          rel={
-                            item.href.startsWith("http")
-                              ? "noopener noreferrer"
-                              : undefined
-                          }
                           className="font-medium text-theme hover:text-primary transition-colors"
                         >
                           {item.value}
@@ -362,8 +270,7 @@ export default function ContactPage() {
             <div className="mt-8 p-6 bg-theme-secondary rounded-lg border border-theme">
               <h3 className="font-semibold text-theme mb-2">Response Time</h3>
               <p className="text-theme-muted text-sm">
-                We typically respond within 24 hours during business days. For
-                urgent inquiries, please call or message us on Instagram.
+                We typically respond within 24 hours.
               </p>
             </div>
           </div>

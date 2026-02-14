@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Portfolio | MGKCodes",
+  title: "Projects | MGKCodes",
   description:
-    "View our portfolio of web development, mobile apps, AI integration, and custom software projects.",
+    "Projects built by MGKCodes — web and mobile applications.",
 };
 
 export default function PortfolioLayout({

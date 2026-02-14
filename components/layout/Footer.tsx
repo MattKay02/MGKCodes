@@ -2,23 +2,23 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useTheme } from "@/components/providers/ThemeProvider";
 
 const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
+  { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 const services = [
-  "Web Development",
-  "SEO Optimization",
-  "AI Integration",
   "Mobile Apps",
-  "Custom Software",
+  "Web Applications",
+  "SaaS Products",
+  "API Development",
+  "AI Integration",
 ];
 
 export function Footer() {
@@ -48,8 +48,7 @@ export function Footer() {
               )}
             </Link>
             <p className="text-gray-400 dark:text-gray-600 text-sm leading-relaxed">
-              Professional web development and software solutions for small
-              businesses worldwide.
+              Development studio building web and mobile applications.
             </p>
           </div>
 
@@ -93,31 +92,11 @@ export function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:mgkcodes@gmail.com"
+                  href="mailto:hello@mgkcodes.com"
                   className="flex items-center gap-3 text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   <Mail size={18} />
-                  mgkcodes@gmail.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+447454745917"
-                  className="flex items-center gap-3 text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
-                >
-                  <Phone size={18} />
-                  (+44) 7454745917
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://instagram.com/mgkcodes_"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
-                >
-                  <Instagram size={18} />
-                  @mgkcodes_
+                  hello@mgkcodes.com
                 </a>
               </li>
             </ul>

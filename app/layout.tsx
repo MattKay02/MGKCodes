@@ -12,13 +12,13 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "MGKCodes | Professional Web Development for Small Businesses",
+  title: "MGKCodes | Development Studio",
   description:
-    "Custom web development, SEO optimization, and software solutions to grow your business online. Professional websites from £99.",
+    "Development studio building web and mobile applications. Custom SaaS development, product design, and full-stack engineering.",
   openGraph: {
-    title: "MGKCodes | Professional Web Development",
+    title: "MGKCodes | Development Studio",
     description:
-      "Custom web development, SEO optimization, and software solutions to grow your business online.",
+      "Development studio building web and mobile applications. Custom SaaS development, product design, and full-stack engineering.",
     url: "https://mgkcodes.com",
     siteName: "MGKCodes",
     type: "website",
