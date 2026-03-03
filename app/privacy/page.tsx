@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | MGKCodes",
@@ -40,6 +41,19 @@ export default function PrivacyPage() {
               If you have any questions about this Privacy Policy, please contact
               us at hello@mgkcodes.com.
             </p>
+          </div>
+
+          {/* App Privacy Policies */}
+          <div className="mt-12 pt-10 border-t border-gray-200 dark:border-gray-700">
+            <h2 className="text-2xl font-semibold text-theme mb-2">
+              App Privacy Policies
+            </h2>
+            <p className="text-muted mb-6">
+              Privacy policies for our mobile applications.
+            </p>
+            <Button href="/privacy/liftio" variant="secondary">
+              Liftio — Privacy Policy
+            </Button>
           </div>
         </div>
       </Section>
