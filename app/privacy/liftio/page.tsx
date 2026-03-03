@@ -194,7 +194,7 @@ export default function LiftioPrivacyPage() {
             If you have any questions about this privacy policy or Liftio&apos;s
             data practices, please contact us:
           </p>
-          <ul className="space-y-1">
+          <ul className="space-y-1 mb-6">
             <li className="text-[#aaa] text-[15px] pl-4 relative before:content-['-'] before:absolute before:left-0 before:text-[#444]">
               Email:{" "}
               <a
@@ -208,6 +208,12 @@ export default function LiftioPrivacyPage() {
               Company: MGKCodes Ltd
             </li>
           </ul>
+          <Link
+            href="/support/liftio"
+            className="inline-block bg-white text-black text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-[#e0e0e0] transition-colors"
+          >
+            Visit Support Page
+          </Link>
         </section>
 
         {/* Divider */}
