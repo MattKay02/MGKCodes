@@ -446,13 +446,10 @@ export default function LiftioPrivacyPage() {
             <li className="text-[#aaa] text-[15px]">
               Your subscription entitlement is removed from RevenueCat
             </li>
-            <li className="text-[#aaa] text-[15px]">
-              Your local app data on-device is cleared
-            </li>
           </ol>
           <div className="bg-[#111] border border-[#1e1e1e] border-l-[3px] border-l-white rounded-sm px-6 py-5 mb-4">
             <p className="text-[#ccc] text-[15px]">
-              Data deletion is permanent and irreversible. We cannot recover your
+              Cloud data deletion is permanent and irreversible. We cannot recover your
               data after account deletion.
             </p>
           </div>
@@ -531,7 +528,7 @@ export default function LiftioPrivacyPage() {
             {[
               "Data in transit is encrypted using TLS",
               "Supabase uses row-level security (RLS) policies — your data is accessible only to your authenticated account",
-              "Authentication tokens are stored in the iOS Keychain (via iOS Secure Enclave)",
+              "Authentication tokens are stored securely on-device using platform-standard storage",
               "No passwords are stored — authentication is delegated entirely to Apple",
             ].map((item) => (
               <li
