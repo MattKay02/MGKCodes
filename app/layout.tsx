@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
-import { Source_Sans_3 } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "MGKCodes | Development Studio",
+  title: "MGKCodes",
   description:
-    "Development studio building web and mobile applications. Custom SaaS development, product design, and full-stack engineering.",
+    "A software studio. Building Liftio and other products.",
   openGraph: {
-    title: "MGKCodes | Development Studio",
+    title: "MGKCodes",
     description:
-      "Development studio building web and mobile applications. Custom SaaS development, product design, and full-stack engineering.",
+      "A software studio. Building Liftio and other products.",
     url: "https://mgkcodes.com",
     siteName: "MGKCodes",
     type: "website",
@@ -31,13 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${sourceSans.variable} font-sans antialiased`}>
-        <ThemeProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </ThemeProvider>
+    <html lang="en" className={ibmPlexSans.variable}>
+      <body className="font-sans">
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

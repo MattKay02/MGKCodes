@@ -1,68 +1,51 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme inline {
-  --color-primary: #0074D9;
-  --color-primary-dark: #005bb5;
-  --font-sans: "Source Sans Pro", system-ui, sans-serif;
-}
-
-:root {
-  --bg: #ffffff;
-  --bg-secondary: #f9fafb;
-  --text: #000000;
-  --text-muted: #6b7280;
-  --border: #e5e7eb;
-  --surface: #ffffff;
-}
-
-.dark {
-  --bg: #0a0a0a;
-  --bg-secondary: #171717;
-  --text: #ffffff;
-  --text-muted: #a1a1aa;
-  --border: #27272a;
-  --surface: #171717;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  --color-bg: #08090d;
+  --color-surface: #0f1115;
+  --color-surface-alt: #13161c;
+  --color-border: #1a1d24;
+  --color-border-strong: #2a2e38;
+  --color-text: #d4d6db;
+  --color-text-strong: #ffffff;
+  --color-text-muted: #8a8e98;
+  --color-text-quiet: #4a4e58;
+  --color-accent: #4a7ab8;
+  --color-accent-strong: #5b8acb;
+  --color-accent-quiet: #3a5d8a;
+  --font-sans: var(--font-ibm-plex-sans), system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 1px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-/* Theme-aware utility classes */
-.bg-theme {
-  background-color: var(--bg);
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text-strong);
 }
 
-.bg-theme-secondary {
-  background-color: var(--bg-secondary);
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
-.bg-theme-surface {
-  background-color: var(--surface);
-}
-
-.text-theme {
-  color: var(--text);
-}
-
-.text-theme-muted {
-  color: var(--text-muted);
-}
-
-.border-theme {
-  border-color: var(--border);
+@keyframes draw-vertical {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
 }

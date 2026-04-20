@@ -1,127 +1,40 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { Mail } from "lucide-react";
-import { useTheme } from "@/components/providers/ThemeProvider";
-
-const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
-
-const services = [
-  "Mobile Apps",
-  "Web Applications",
-  "SaaS Products",
-  "API Development",
-  "AI Integration",
-];
 
 export function Footer() {
-  const { theme, mounted } = useTheme();
-
   return (
-    <footer className="bg-black text-white dark:bg-white dark:text-black transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-6">
-              {mounted ? (
-                <Image
-                  src={
-                    theme === "dark"
-                      ? "/images/logo/svg/logo-no-background.svg"
-                      : "/images/logo/svg/logo-white-elements.svg"
-                  }
-                  alt="MGKCodes"
-                  width={180}
-                  height={54}
-                  className="h-14 w-auto"
-                />
-              ) : (
-                <div className="h-14 w-[180px] bg-white/10 dark:bg-black/10 rounded animate-pulse" />
-              )}
-            </Link>
-            <p className="text-gray-400 dark:text-gray-600 text-sm leading-relaxed">
-              Development studio building web and mobile applications.
-            </p>
-          </div>
+    <footer className="border-t border-[var(--color-border)] mt-32">
+      <div className="max-w-[1180px] mx-auto px-6 py-12">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <Link
+            href="/"
+            className="group flex items-center transition-opacity hover:opacity-80"
+            aria-label="MGKCodes home"
+          >
+            <Image
+              src="/images/logo/svg/logo-white-elements.svg"
+              alt="MGKCodes"
+              width={1500}
+              height={935}
+              className="h-8 w-auto"
+            />
+          </Link>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-5">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-5">Services</h3>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <Link
-                    href="/services"
-                    className="text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
-                  >
-                    {service}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold mb-5">Contact</h3>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href="mailto:hello@mgkcodes.com"
-                  className="flex items-center gap-3 text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
-                >
-                  <Mail size={18} />
-                  hello@mgkcodes.com
-                </a>
-              </li>
-            </ul>
-          </div>
+          <a
+            href="mailto:hello@mgkcodes.com"
+            className="text-[13px] text-[var(--color-text-muted)] hover:text-[var(--color-accent-strong)] transition-colors"
+          >
+            hello@mgkcodes.com
+          </a>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 dark:border-gray-200 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 dark:text-gray-600 text-sm">
-            © 2026 MGKCodes. All rights reserved.
+        <div className="border-t border-[var(--color-border)] mt-10 pt-6 flex items-center justify-between">
+          <p className="text-[12px] text-[var(--color-text-quiet)] tracking-tight">
+            &copy; 2026 MGKCodes Ltd
           </p>
-          <div className="flex gap-6">
-            <Link
-              href="/privacy"
-              className="text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-gray-400 dark:text-gray-600 hover:text-primary transition-colors text-sm"
-            >
-              Terms of Service
-            </Link>
-          </div>
+          <p className="text-[11px] text-[var(--color-text-quiet)] tracking-[1.5px] uppercase">
+            Outside the box
+          </p>
         </div>
       </div>
     </footer>

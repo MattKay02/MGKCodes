@@ -7,28 +7,31 @@ import { cn } from "@/lib/utils";
 interface SectionProps extends Omit<HTMLMotionProps<"section">, "children"> {
   children: React.ReactNode;
   container?: boolean;
+  width?: "narrow" | "wide";
 }
 
 export const Section: FC<SectionProps> = ({
   children,
   container = true,
+  width = "wide",
   className,
   ...props
 }) => {
+  const inner =
+    width === "narrow"
+      ? "max-w-[720px] mx-auto px-6"
+      : "max-w-[1080px] mx-auto px-6";
+
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={cn("py-16 md:py-24", className)}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={cn("py-20 md:py-28", className)}
       {...props}
     >
-      {container ? (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
-      ) : (
-        children
-      )}
+      {container ? <div className={inner}>{children}</div> : children}
     </motion.section>
   );
 };

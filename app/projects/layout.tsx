@@ -2,11 +2,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects | MGKCodes",
-  description:
-    "Projects built by MGKCodes — web and mobile applications.",
+  description: "Apps and products built by MGKCodes.",
 };
 
-export default function PortfolioLayout({
+export default function ProjectsLayout({
   children,
 }: {
   children: React.ReactNode;

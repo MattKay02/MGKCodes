@@ -1,511 +1,150 @@
-# MGKCodes Website Development Instructions
+# MGKCodes — Project Instructions
 
-## Project Overview
-Build a professional software solutions company website for MGKCodes using Next.js 14+, TypeScript, and Tailwind CSS. This is a business website focused on web development services for small businesses, with additional services in SEO, AI integration, mobile apps, and custom software.
+## What MGKCodes is
 
-## Brand Guidelines
+MGKCodes is a **product-led software studio** run by a solo founder (Matthew Kay).
+It exists primarily to ship its own apps and products — Liftio (live on the iOS App Store) is the first; more are planned. Client work is welcome but is **partnership-style, not transactional** — the site is a passive surface for collaborators / investors / interesting conversations to find their way in.
 
-### Colors
-- Primary: `#000000` (Black)
-- Secondary/Accent: `#0074D9` (Blue)
-- Background: `#FFFFFF` (White)
+This is **not** a small-business web-dev shop. There are no service tiers, no £99 landing pages, no pricing, no contact form sales funnel. Anything in older files suggesting otherwise is wrong and should be removed.
 
-### Typography
-- Font: Source Sans Pro Semi Bold
-- Use `font-semibold` class for headings
-- Install font via Google Fonts or use system fallback
+## Brand model
 
-### Design Style
-- Clean, modern, professional
-- Black borders/frames matching logo style
-- Blue accents for CTAs and interactive elements
-- Generous whitespace
-- Mobile-first responsive design
+**Holding model.** MGKCodes is the studio entity; products (Liftio, future apps) live as their own brands and are only visibly tied back to MGKCodes if you go looking. The MGKCodes site itself is where the studio identity lives.
 
-## Technical Stack
+## Voice
 
-### Required Technologies
-- **Framework:** Next.js 14+ (App Router)
+Honest, indie solo-founder. **Show the work**, don't narrate the journey. Voice stays implicit. No "I'm Matthew, I build…" intros. State facts. Let the work speak.
+
+Twitter (@mattykay2002) is the conversational channel. The site is the professional face.
+
+### What MGKCodes does (the through-line for every page)
+
+MGKCodes is an **independent software studio that takes products from idea to launched product**. Sketch, design, build, ship, market — all done in-house, by the same hands. Apps, web, whatever the product needs. Liftio is the current shipping product, not the studio's identity. The studio is bigger than any one app.
+
+The site exists to communicate **what the studio does**, not to advertise Liftio. Liftio belongs in the "currently building" callout and the projects list. It does **not** belong in any hero, headline, or top-of-page summary.
+
+### Hard rules — voice and copy
+
+These rules apply to every word of user-facing copy on the site. Treat them as non-negotiable.
+
+- **No em dashes.** Not `—`, not `&mdash;`, not `--`. Use periods, commas, colons, parentheses, or restructure the sentence. Em dashes are the strongest tell of AI-generated text.
+- **No marketing-template phrases.** Banned: "considered design", "no roadmap by committee", "ship when right not when sprint closes", "small surface area by choice", "scope flexes; quality doesn't", "ideas worth building", "honest performance", "no shortcuts", "in build" (use "in development" or "currently building"), "revised in public", "end-to-end" as adjective filler, "thinking outside the box" as a literal phrase (the brand DNA inspires it but don't *say* it).
+- **No hedging.** "When the fit is genuinely there", "happens to also", "where it matters", "that just works" — cut them or replace with what you actually mean.
+- **Specific over generic.** Instead of "modern stacks" say "Next.js" or "Swift" if it's true. Instead of "considered design" describe what's considered.
+- **Show, don't claim.** Don't say "we ship quality" — show it by being precise. Don't say "we're independent" three times — say it once and move on.
+- **Liftio reference rules.** Liftio appears: in the "Currently" callout on home, in the projects list, in /connect's link list. Liftio does **not** appear: in any hero subhead, in studio's hero or first About paragraph, anywhere as a synecdoche for what MGKCodes is.
+- **No fake plurality avoidance.** "We" is fine when it reads as the studio. "I" is fine when it reads honest. Don't get tangled up.
+- **Punctuation:** prefer periods over conjunctions. Short sentences land harder. Two short sentences > one long balanced sentence with a clause and an em dash.
+
+## Design language
+
+MGKCodes has its **own** distinct visual identity. It is *not* an extension of Liftio (or any project). Liftio happens to also be dark, but the two should not feel related — MGKCodes is the studio, Liftio is a project the studio ships, they live in different visual worlds.
+
+The MGKCodes identity is built from the brand board (`public/images/logo/BrandBoard.pdf`) — that brand kit is old and template-y, but the DNA (black + blue + framed mark) is the seed for the current design language. The blue in the brand board (`#0074d9`) was too Bootstrap-corporate for a considered studio, so it has been evolved to a muted editorial blue.
+
+### Design principles
+
+- **Dark-only.** No light mode, no theme toggle. Backgrounds, surfaces, borders all step through cool near-blacks (see palette below).
+- **Muted editorial blue as the single accent.** Used quietly — link underlines, focus rings, hover states, key small accents. Never as a button fill or large block of color.
+- **The framed-logo motif as a subtle visual signature.** The MGKCodes logo is built around a rectangular frame (with the M intentionally breaking out of it — "outside the box"). Carry this *subtly* into the site: thin framed elements, hairline borders that extend past their containers, intentional structure. Never loud, always considered.
+- **Animated and dynamic, but purposeful.** Every motion has a job — reveal, emphasize, respond, signal hierarchy. No decorative animated dots/lines/brackets scattered for atmosphere. Examples of good motion: staggered text reveals, frame strokes drawing on entry, magnetic/responsive hover states, scroll-triggered builds. The site should feel like the work of a developer who builds polished, considered things.
+- **Typography:** IBM Plex Sans (we override the brand board's Source Sans Pro spec; the brand board is outdated). Bold tight-tracked headings. Uppercase eyebrow tags with wide tracking (`tracking-[1.5px]`).
+- **Sharp corners** (`rounded-none` or `rounded-sm` only), thin borders, generous whitespace. Architectural, structural, considered.
+- **Logo wherever MGKCodes appears.** Use `logo-white-elements.svg` in the header (and footer where relevant). The actual brand mark in the chrome, not just text.
+
+### Color palette (canonical)
+
+| Role | Hex | Usage |
+|---|---|---|
+| BG | `#08090d` | Page background — near-black with subtle cool undertone |
+| Surface | `#0f1115` | Cards, raised surfaces |
+| Surface alt | `#13161c` | Secondary surfaces, hover states on bg |
+| Border subtle | `#1a1d24` | Hairlines, default borders |
+| Border emphasis | `#2a2e38` | Hover/active borders |
+| Text strong | `#ffffff` | Headlines, emphasis |
+| Text body | `#d4d6db` | Body copy |
+| Text muted | `#8a8e98` | Secondary copy, captions |
+| Text quiet | `#4a4e58` | Eyebrow tags, copyright, tertiary |
+| Accent | `#4a7ab8` | Muted editorial blue — links, focus, key accents |
+| Accent strong | `#5b8acb` | Hover state for accent |
+| Accent quiet | `#3a5d8a` | Less prominent accent uses |
+
+## Information architecture
+
+| Route | Purpose | In nav? |
+|---|---|---|
+| `/` | Studio intro, current focus, project strip, hand-picked tweets | Yes |
+| `/projects` | All apps/products on one page, each in its own visual treatment inside the MGKCodes shell. Architecture must equally accommodate future apps — no app should dominate. | Yes |
+| `/studio` | Studio story, how MGKCodes operates, philosophy. Replaces the old `/about`. | Yes |
+| `/contact` | No form. Just LinkedIn, X, GitHub, email-as-text. "Open to conversations" framing, not sales. | Yes |
+| `/connect` | Conference QR landing page. Ruthlessly simple — name, one-line focus, link list. Inherits site design. **Hidden from nav.** | No |
+| `/privacy/liftio`, `/terms/liftio`, `/support/liftio` | Liftio legal — required by App Store. Already correct; do not touch. | No |
+| `/privacy`, `/terms` | MGKCodes legal. Out of scope for the reshape unless explicitly asked. | No |
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Forms:** React Hook Form
-- **Icons:** Lucide React or Heroicons
-- **Email:** EmailJS for contact form
+- **Styling:** Tailwind CSS v4 (config lives in `app/globals.css` via `@theme inline`)
+- **Animation:** Framer Motion — used sparingly, scroll fade-ins only
+- **Icons:** Lucide React
+- **Font:** IBM Plex Sans via `next/font/google`
 
-### Project Structure
+Do **not** add: form libraries, email-sending libraries (EmailJS removed), analytics SDKs without asking.
+
+## External links / channels — strict separation
+
+The MGKCodes brand and the founder's personal accounts are **separate identities**. The site enforces this separation:
+
+### MGKCodes (the company / studio)
+Only **active** MGKCodes-branded channels appear on the main site (Footer, Contact, Studio "Reach out"). Inactive MGKCodes channels (X, TikTok, Instagram, LinkedIn) are **not** linked anywhere — empty profiles read as abandoned and damage the brand. They get added in batch when content is being posted.
+
+- **Email:** hello@mgkcodes.com (currently the only active MGKCodes channel)
+
+### Personal — Matthew Kay
+These appear **only on `/connect`** (the personal QR-code landing page). They must **not** appear in Footer, Contact, Studio, or any MGKCodes-branded surface.
+
+- **Personal site:** https://mattkay02.github.io/
+- **GitHub:** https://github.com/MattKay02
+- **LinkedIn:** https://www.linkedin.com/in/matthew-kay-/
+- **X / Twitter:** https://x.com/mattykay2002
+
+### Products (Liftio)
+Linked from `/projects` (project block) and `/connect` (link list). Not in Footer or main nav.
+
+- **Liftio:** https://www.getliftio.com/
+- **Liftio App Store:** https://apps.apple.com/gb/app/liftio/id6759969740
+
+## Conventions
+
+- **File naming:** Components PascalCase, pages lowercase per Next.js App Router.
+- **Components:** Default to `FC<Props>` with explicit interfaces. No `any`.
+- **Tailwind:** Group utility classes by function. Use `cn()` from `lib/utils.ts` for conditional classes.
+- **Comments:** Default to none. Only when *why* is non-obvious.
+- **No emojis** in code or copy unless explicitly requested.
+
+## What lives where
+
 ```
-/app
-  /page.tsx (Homepage)
-  /services/page.tsx
-  /portfolio/page.tsx
-  /about/page.tsx
-  /contact/page.tsx
-  /layout.tsx
-/components
-  /ui (reusable components)
-    /Button.tsx
-    /Card.tsx
-    /Section.tsx
-  /layout
-    /Header.tsx
-    /Footer.tsx
-    /Navigation.tsx
-  /home (homepage sections)
-  /services (service components)
-  /portfolio (portfolio components)
-/lib
-  /utils.ts
-/public
-  /images
-  /logo (logo files)
-```
-
-## Site Structure
-
-### Pages to Build
-1. **Homepage** - Hero, services overview, how it works, pricing snapshot, featured projects, CTA
-2. **Services** - 6 detailed service sections (Web Dev featured, then SEO, AI, Apps, Social, Custom)
-3. **Portfolio** - Grid with filters, Coming Soon placeholders, case study template
-4. **About** - Brief company overview (3 paragraphs)
-5. **Contact** - Contact form + direct contact info
-
-## Component Requirements
-
-### Button Component
-Create variants:
-- **Primary:** Blue bg (`#0074D9`), white text, rounded
-- **Secondary:** Blue border, blue text, hover fills blue
-- **Ghost:** No border, blue text, subtle hover
-
-### Card Component
-- White background
-- Black border (1px) - matching logo frame style
-- Subtle shadow
-- Hover: slight lift effect (increase shadow)
-- Consistent padding
-
-### Navigation
-- Fixed header, white background, subtle shadow
-- Logo on left (use text "MGKCodes" styled in brand colors if no logo file)
-- Desktop: horizontal nav links on right
-- Mobile: hamburger menu with slide-in drawer
-- Active page: blue underline or indicator
-
-## Page-Specific Requirements
-
-### Homepage
-
-**Hero Section:**
-```
-Headline: "Professional Websites Built for Small Businesses"
-Subheadline: "Custom web development, SEO optimization, and software solutions to grow your business online"
-CTA Buttons: "Get Your Website" (primary) | "View Our Work" (secondary)
-Trust Badge: "From £99 | Worldwide Service | Ready to Launch"
+app/
+  layout.tsx          # Root layout, fonts, no providers
+  globals.css         # Tailwind import, design tokens (dark only)
+  page.tsx            # Home
+  projects/page.tsx   # All projects, one page
+  studio/page.tsx     # Studio story
+  contact/page.tsx    # No form, links only
+  connect/page.tsx    # Conference QR landing
+  privacy/liftio/     # Liftio legal — leave alone
+  terms/liftio/
+  support/liftio/
+components/
+  ui/                 # Button, Card, Section
+  layout/             # Header, Footer
+lib/utils.ts          # cn() helper
 ```
 
-**Services Overview (3 cards):**
-1. Web Development - "Starting at £99"
-2. SEO Optimization - "£40/month package available"
-3. Software Solutions - "Get a Quote"
-
-**How It Works (3 steps):**
-1. Contact Us → Tell us what you need
-2. We Build → Fast, professional development
-3. You Launch → Go live with hosting + SEO support
-
-**Pricing Snapshot:**
-- Landing Page: £99
-- Custom Website: Contact for Quote
-- Hosting + SEO: £40/month
-
-### Services Page
-
-**Service Order (with detail level):**
-
-1. **Web Development** (MOST DETAIL - largest section)
-   - What We Build: Landing pages, business sites, e-commerce, portfolios, web apps
-   - Process: 4 steps (Consultation, Design & Dev, Testing, Support)
-   - Tech Stack: React, Next.js, Tailwind, mobile-first, SEO-optimized
-   - Pricing:
-     * Landing Page: £99 (details listed)
-     * Multi-Page: Custom Quote
-     * Hosting + SEO: £40/month (detailed features)
-     * Updates: Separate service, contact for quote
-   
-2. **SEO Optimization** (Medium detail)
-   - What We Offer: keyword research, on-page SEO, technical SEO, local SEO
-   - Included in £40/month package
-   - Standalone: Custom quote
-   
-3. **AI Integration** (Medium detail)
-   - Chatbots, content generation, automation
-   - Use cases and tech stack
-   - Custom quote
-   
-4. **Mobile App Development** (Medium detail)
-   - iOS, Android, cross-platform, PWAs
-   - React Native
-   - Custom quote
-   
-5. **Social Media Solutions** (Brief)
-   - Management tools, automation, analytics
-   - Custom quote
-   
-6. **Custom Software Solutions** (Brief)
-   - Catch-all for any software needs
-   - Custom quote
-
-### Portfolio Page
-
-**Initial State:**
-- Grid layout with 6 "Coming Soon" placeholder cards
-- Filters: All Projects, Web Development, Mobile Apps, AI Integration, SEO Projects, Social Media, Custom Solutions
-- Each placeholder card:
-  * Placeholder icon/image
-  * "Project Coming Soon" label
-  * Service category badge
-  * Text: "We're currently working on exciting projects. Check back soon!"
-
-**Structure for Future Case Studies:**
-Template page at `/portfolio/[slug]` with sections:
-- Hero image
-- The Challenge
-- The Solution
-- Technologies Used
-- Key Features
-- Results & Impact
-- Visual Showcase
-- Project Details
-- Links (if applicable)
-
-### About Page
-
-**Content (3 short paragraphs):**
-
-Paragraph 1:
-"MGKCodes is a software solutions company specializing in custom web development and modern technology integration. We help small businesses and growing companies establish their online presence and leverage technology to achieve their goals."
-
-Paragraph 2:
-"We've always had a passion for design and creating something real. That passion drives every project we take on - from simple landing pages to complex AI integrations. We believe great software should be accessible, affordable, and built to last."
-
-Paragraph 3:
-"We work remotely with clients worldwide, bringing modern development practices and clear communication to every project. Whether you need a new website, mobile app, or custom software solution, we're here to help you build it right."
-
-**Sections:**
-- Company overview (above)
-- What We Do Best (6 brief bullet points)
-- Our Technology (brief paragraph + tech stack logos)
-- Why Work With Us (4 brief points)
-- CTA: "Let's discuss what we can build together"
-
-### Contact Page
-
-**Contact Form Fields:**
-- Name (required)
-- Email (required)
-- Phone (optional)
-- Service Interested In (dropdown - required):
-  * Web Development
-  * SEO Optimization
-  * AI Integration
-  * Mobile App
-  * Social Media Solutions
-  * Custom Software
-  * Not Sure / General Inquiry
-- Project Description (textarea - required)
-- Budget Range (optional dropdown):
-  * Under £500
-  * £500 - £1,000
-  * £1,000 - £5,000
-  * £5,000+
-  * Not sure yet
-- Submit button: "Send Message"
-
-**Direct Contact Info Display:**
-- Email: mgkcodes@gmail.com
-- Phone: (+44) 7454745917
-- Instagram: @mgkcodes_
-- Location: Worldwide Remote Service
-
-**Form Behavior:**
-- Validate all required fields
-- Success message: "Thanks for reaching out! We'll get back to you within 24 hours."
-- Error handling with clear messages
-- Loading state while submitting
-- Integrate with EmailJS (send to mgkcodes@gmail.com)
-
-## Footer Requirements
-
-Include:
-- Logo/brand name
-- Quick Links: Home, Services, Portfolio, About, Contact
-- Services list (brief)
-- Contact info: email, phone
-- Social media: Instagram icon linked to @mgkcodes_
-- Copyright: "© 2026 MGKCodes. All rights reserved."
-- Optional: Privacy Policy, Terms of Service links (placeholder pages)
-
-## Responsive Design Requirements
-
-### Breakpoints
-- Mobile: < 640px
-- Tablet: 640px - 1024px
-- Desktop: > 1024px
-
-### Mobile Considerations
-- Hamburger menu on mobile
-- Stack sections vertically
-- Touch-friendly buttons (min 44x44px)
-- Readable text sizes (min 16px)
-- Easy-to-tap form fields
-
-## Animation Guidelines
-
-Use Framer Motion for:
-- **Scroll Animations:** Fade in + slide up on sections as user scrolls
-- **Hover Effects:** Subtle scale or shadow on cards/buttons
-- **Page Transitions:** Smooth fade between pages
-- **Mobile Menu:** Slide in from right with backdrop
-
-**Animation Timing:**
-- Duration: 200-300ms for interactions
-- Easing: ease-in-out
-- Stagger children for lists/grids
-
-## SEO Requirements
-
-### Meta Tags (Every Page)
-```typescript
-export const metadata = {
-  title: "Page Title | MGKCodes",
-  description: "Page description (150-160 characters)",
-  openGraph: {
-    title: "Page Title",
-    description: "Page description",
-    url: "https://mgkcodes.com/page",
-    siteName: "MGKCodes",
-    images: [{ url: "https://mgkcodes.com/og-image.jpg" }],
-    type: "website",
-  },
-}
-```
-
-### Structured Data
-Add JSON-LD for:
-- Organization (homepage)
-- LocalBusiness (contact page)
-- Service offerings
-
-### Additional SEO
-- Semantic HTML (proper heading hierarchy)
-- Alt text on all images
-- Internal linking between pages
-- Sitemap.xml (auto-generated by Next.js)
-- Robots.txt
-
-## Performance Requirements
-
-### Image Optimization
-- Use Next.js `<Image>` component
-- WebP format preferred
-- Lazy loading for below-fold images
-- Responsive images with proper sizing
-
-### Code Optimization
-- Code splitting (automatic with Next.js App Router)
-- Dynamic imports for heavy components
-- Minimize bundle size
-- Remove unused dependencies
-
-### Target Lighthouse Scores
-- Performance: 90+
-- Accessibility: 95+
-- Best Practices: 95+
-- SEO: 100
-
-## Development Workflow
-
-### Phase 1: Setup & Foundation
-1. Initialize Next.js project: `npx create-next-app@latest mgkcodes-website --typescript --tailwind --app`
-2. Install dependencies:
-   ```bash
-   npm install framer-motion react-hook-form lucide-react emailjs-com
-   ```
-3. Configure Tailwind with brand colors
-4. Set up project structure
-5. Create base components (Button, Card, Section)
-6. Build Header and Footer
-
-### Phase 2: Build Pages
-1. Homepage with all sections
-2. Services page with detailed content
-3. Portfolio page with Coming Soon placeholders
-4. About page
-5. Contact page with form
-
-### Phase 3: Enhancements
-1. Add animations with Framer Motion
-2. Implement portfolio filters
-3. Integrate EmailJS for contact form
-4. Add SEO meta tags
-5. Optimize performance
-
-### Phase 4: Testing
-1. Test all pages on mobile/tablet/desktop
-2. Test contact form submission
-3. Check all links work
-4. Validate responsive design
-5. Run Lighthouse audit
-6. Fix any issues
-
-## Code Style Guidelines
-
-### TypeScript
-- Use TypeScript for all components
-- Define proper interfaces for props
-- Avoid `any` type
-
-### Component Structure
-```typescript
-import { FC } from 'react'
-
-interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'ghost'
-  children: React.ReactNode
-  onClick?: () => void
-}
-
-export const Button: FC<ButtonProps> = ({ 
-  variant = 'primary', 
-  children, 
-  onClick 
-}) => {
-  // Component logic
-  return (
-    <button 
-      className={`btn btn-${variant}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  )
-}
-```
-
-### Tailwind Classes
-- Use @apply for repeated patterns
-- Keep utility classes readable (group by function)
-- Use custom colors from tailwind.config
-
-### File Naming
-- Components: PascalCase (Button.tsx)
-- Pages: lowercase (about/page.tsx)
-- Utils: camelCase (formatPrice.ts)
-
-## Accessibility Requirements
-
-- Semantic HTML (header, nav, main, footer, section, article)
-- Proper heading hierarchy (h1 → h2 → h3)
-- Keyboard navigation support
-- Focus indicators visible
-- ARIA labels where needed
-- Color contrast WCAG AA compliant (already good with black/blue/white)
-- Alt text on all images
-- Form labels properly associated
-
-## Important Notes
-
-### Priorities
-1. **Web Development service must be most prominent** - largest section, most detail, featured position
-2. **Professional but conversational tone** - "we" not "I", approachable but business-focused
-3. **Mobile-first** - design for mobile, enhance for desktop
-4. **Fast loading** - optimize everything, aim for <3s load time
-5. **Clear CTAs** - every page should guide user to contact
-
-### Content Guidelines
-- Use "we" and "our" (company voice)
-- Keep copy concise and scannable
-- Lead with benefits, not features
-- Include specific pricing where defined (£99, £40/month)
-- Always offer "Contact for Quote" for undefined pricing
-
-### What NOT to Do
-- Don't use "I" or "my" (personal brand voice)
-- Don't make About page too personal or lengthy
-- Don't hide pricing - be transparent
-- Don't over-animate - keep it subtle
-- Don't use stock photos if possible (clean designs better)
-
-## Testing Checklist
-
-Before considering complete:
-- [ ] All pages render correctly
-- [ ] Navigation works (all links)
-- [ ] Mobile menu functions properly
-- [ ] Contact form submits successfully
-- [ ] Form validation works
-- [ ] All responsive breakpoints tested
-- [ ] Images load and display properly
-- [ ] Animations work smoothly
-- [ ] No console errors
-- [ ] Lighthouse scores meet targets
-- [ ] SEO meta tags present on all pages
-- [ ] Accessible via keyboard navigation
-
-## Deployment
-
-### Vercel Deployment
-1. Push code to GitHub repository
-2. Import project to Vercel
-3. Connect custom domain (mgkcodes.com)
-4. Configure environment variables:
-   - NEXT_PUBLIC_EMAILJS_SERVICE_ID
-   - NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-   - NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-5. Deploy
-6. Verify all functionality on live site
-
-### Post-Deployment
-- Set up Google Analytics or Plausible
-- Submit sitemap to Google Search Console
-- Test contact form on live site
-- Check mobile performance on real devices
-
-## Future Enhancements (Not for Initial Build)
-
-Nice-to-haves for later:
-- Dark mode toggle
-- Blog section with CMS
-- Live chat widget
-- Booking/scheduling integration
-- Testimonials slider
-- Client logo showcase
-- Loading skeleton screens
-- Progressive Web App features
-
-## Questions During Development?
-
-If you encounter decisions not covered here:
-1. **Design choices:** Follow brand board (black/blue/white, clean, professional)
-2. **Content gaps:** Use placeholder text, mark as TODO
-3. **Technical decisions:** Prefer Next.js best practices, keep it simple
-4. **Unclear requirements:** Build the simplest working version first
-
-## Success Criteria
-
-The website is complete when:
-✅ All 5 pages built and functional
-✅ Responsive on mobile, tablet, desktop
-✅ Contact form working (EmailJS integrated)
-✅ Portfolio shows Coming Soon placeholders
-✅ All pricing clearly displayed
-✅ Brand colors and style consistent throughout
-✅ Navigation works perfectly
-✅ Performance Lighthouse score 90+
-✅ No critical accessibility issues
-✅ Ready to deploy to Vercel
-
----
-
-**Ready to build? Start with Phase 1!**
+## When in doubt
+
+- Match the look and tone of `app/support/liftio/page.tsx`. That page is the visual north star.
+- Show the work, don't narrate it.
+- If a feature's purpose is to drive sales, it doesn't belong on this site.
